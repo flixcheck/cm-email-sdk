@@ -13,7 +13,7 @@ This is a very simple JavaScipt SDK for CM's e-mail campaign service.
 ## Usage
 
 ``` javascript
-const CmEmailClient = require("npm install cm-email-sdk");
+const CmEmailClient = require("cm-email-sdk");
 
 const client = new CmEmailClient(accountId, productToken);
 
