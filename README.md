@@ -8,7 +8,7 @@ This is a very simple JavaScipt SDK for CM's e-mail campaign service.
 
 ## Installation
 
-TODO
+`npm install cm-email-sdk`
 
 ## Usage
 
