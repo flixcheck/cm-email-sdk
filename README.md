@@ -29,3 +29,5 @@ await client.send(
     "This is a test e-mail.\n\nDid it arrive?"
 );
 ```
+
+For more examples check out the `/examples` folder.

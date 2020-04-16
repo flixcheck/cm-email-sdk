@@ -1,3 +1,4 @@
+const fs = require("fs");
 const CmEmailClient = require("../index");
 
 const accountId = process.env.CM_ACCOUNT_ID;
@@ -9,13 +10,27 @@ if (!accountId || !productToken) {
 
 const client = new CmEmailClient(accountId, productToken);
 
-async function test() {
+async function testSimple() {
     try {
-        await client.setFrom("dev@adapter.flixcheck.com", "Flixcheck Development");
-        await client.send("recipient@example.com", "Bob Dylan", "Welcome, Bob!", "This is a test e-mail.\n\nDid it arrive?");
+        await client.setFrom("my-validated-sender@somedomain.com", "My Sender Name");
+        await client.send("recipient@example.com", "Bob Smith", "Welcome, Bob!", "This is a test e-mail.\n\nDid it arrive?");
     } catch (error) {
         console.error(error);
     }
 }
 
-test();
+async function testAttachment() {
+    try {
+        const attachments = [{
+            buffer: fs.readFileSync(__dirname + "/logo.png"),
+            filename: "Logo.png"
+        }];
+        await client.setFrom("my-validated-sender@somedomain.com", "My Sender Name");
+        await client.send("recipient@example.com", "Bob Smith", "Logo", "This is our logo.", attachments);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+testSimple();
+testAttachment();
